@@ -42,45 +42,50 @@ background-image:url('http://usfirst.org/images/logo.gif');
 window.onload = function() { makeTable(); }
 
 var buzzwords = [
-"gracious professionalism",
-"co-opertition",
-"values",
-"make the world a better place",
-"safety",
-"science and technology heros",
-"hard problem",
-"focus like a laser",
-"transforming the culture",
-"hall of fame",
-"grandma is watching",
-"win-win",
-"inspiration",
-"regionals",
-"scholarship",
-"you get what you celebrate",
+"alliance",
 "change the world",
+"co-opertition",
+"Dave",
 "Dean's homework",
-"rookies",
-"Dean, Woodie, & Dave",
-"mentors",
-"St. Louis",
 "FIRST Choice",
+"focus like a laser",
+"gracious professionalism",
+"grandma is watching",
+"hall of fame",
+"hard problem",
+"impact",
+"inspiration",
+"leadership",
+"mentor",
+"mission",
+"regionals",
+"rookie",
+"safety",
+"scholarship",
+"science and technology heroes",
+"St. Louis",
 "teamwork",
-"20th anniversary",
-"vision/camera"
+"transform the culture",
+"values",
+"vision",
+"win-win",
+"Woodie",
+"you get what you celebrate"
 ];
 
 var sponsors = [
-"National Instruments",
-"BAE",
-"Motorola",
-"GM",
-"NASA",
+"Abbott",
+"AndyMark",
 "Autodesk",
-"Xerox",
+"BAE",
+"GM",
+"Motorola",
+"NASA",
+"National Instruments",
+"PTC",
+"will.i.am",
 "WPI",
-"Google",
-"AndyMark"
+"Xerox"
 ];
 
 function permuteList(list) {
@@ -98,7 +103,7 @@ function makeTable() {
 
     permuteList(buzzwords);
     permuteList(sponsors);
-    var terms = buzzwords.slice(0, 22).concat(sponsors.slice(0, 2));
+    var terms = buzzwords.slice(0, 23).concat(sponsors.slice(0, 1));
     permuteList(terms);
 
     var tab = document.createElement('table');

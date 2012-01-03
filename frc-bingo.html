@@ -1,0 +1,154 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>FRC Bingo Card</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<style type="text/css">
+.red {
+text-align:center;
+color:red;
+}
+#newtable {
+border:4px solid blue;
+border-collapse:collapse;
+font-family:verdana,arial,helvetica,sans-serif;
+font-size:18px;
+margin:auto;
+}
+#newtable td {
+width:130px;
+height:80px;
+border:2px solid red;
+padding:4px;
+text-align:center;
+}
+.header {
+color:white;
+background-color:blue;
+font-weight:bold;
+height:1em;
+font-size:2em;
+}
+.middle {
+font-weight:bold;
+text-shadow:1px 1px 3px white, -1px -1px 3px white;
+background-image:url('http://usfirst.org/images/logo.gif');
+}
+</style>
+
+<script type="text/javascript">
+window.onload = function() { makeTable(); }
+
+var buzzwords = [
+"gracious professionalism",
+"co-opertition",
+"values",
+"make the world a better place",
+"safety",
+"science and technology heros",
+"hard problem",
+"focus like a laser",
+"transforming the culture",
+"hall of fame",
+"grandma is watching",
+"win-win",
+"inspiration",
+"regionals",
+"scholarship",
+"you get what you celebrate",
+"change the world",
+"Dean's homework",
+"rookies",
+"Dean, Woodie, & Dave",
+"mentors",
+"St. Louis",
+"FIRST Choice",
+"teamwork",
+"20th anniversary",
+"vision/camera"
+];
+
+var sponsors = [
+"National Instruments",
+"BAE",
+"Motorola",
+"GM",
+"NASA",
+"Autodesk",
+"Xerox",
+"WPI",
+"Google",
+"AndyMark"
+];
+
+function permuteList(list) {
+    for (var i = 1; i < list.length; i++){
+        var j = Math.floor(Math.random() * i);
+        if (i != j) {var swap = list[i]; list[i] = list[j]; list[j] = swap;}
+    }
+}
+
+function makeTable() {
+    var row = [];
+    var cell = [];
+    var num_rows = 5;
+    var midway = Math.floor(num_rows / 2);
+
+    permuteList(buzzwords);
+    permuteList(sponsors);
+    var terms = buzzwords.slice(0, 22).concat(sponsors.slice(0, 2));
+    permuteList(terms);
+
+    var tab = document.createElement('table');
+    tab.setAttribute('id', 'newtable');
+    var tbo = document.createElement('tbody');
+
+    var headerRow = document.createElement('tr');
+    headerRow.setAttribute('class', 'header');
+    var bingo = 'BINGO';
+    var index = 0;
+    for (index = 0; index < bingo.length; index++) {
+        var hdrCell = document.createElement('td');
+        var node = document.createTextNode(bingo.charAt(index));
+        hdrCell.appendChild(node);
+        headerRow.appendChild(hdrCell);
+    }
+    tbo.appendChild(headerRow);
+
+    index = 0;
+    for (var c = 0; c < num_rows; c++){
+        row[c] = document.createElement('tr');
+        for (k = 0; k < num_rows; k++) {
+            cell[k] = document.createElement('td');
+            var term = '';
+            if (c == midway && k == midway) {
+                term = 'robot'; // nearly a free cell
+                cell[k].setAttribute('class', 'middle');
+            } else {
+                term = terms[index++];
+            }
+            var node = document.createTextNode(term);
+            cell[k].appendChild(node);
+            row[c].appendChild(cell[k]);
+        }
+        tbo.appendChild(row[c]);
+    }
+    tab.appendChild(tbo);
+    document.getElementById('mytable').appendChild(tab);
+}
+</script>
+
+<body>
+
+<h1 class="red">FRC Bingo Card</h1>
+
+<div id="mytable"></div>
+
+<p class="red">Just reload the page to get another random bingo card.</p>
+
+<p class="red"><a href="http://pastehtml.com/info/1cojydn.html">Comments?</a></p>
+
+</body>
+</html>

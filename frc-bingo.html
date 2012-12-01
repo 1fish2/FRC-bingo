@@ -66,6 +66,7 @@ var buzzwords = [
 "leadership",
 "mentor",
 "mission",
+"NASA",
 "regional",
 "rookie",
 "safety",
@@ -76,14 +77,6 @@ var buzzwords = [
 "values",
 "vision",
 "Woodie"
-];
-
-var sponsors = [
-"AndyMark",
-"NASA",
-"NASA",
-"National Instruments",
-"will.i.am"
 ];
 
 function permuteList(list) {
@@ -100,9 +93,7 @@ function makeTable() {
     var midway = Math.floor(num_rows / 2);
 
     permuteList(buzzwords);
-    permuteList(sponsors);
-    var terms = buzzwords.slice(0, 23).concat(sponsors.slice(0, 1));
-    permuteList(terms);
+    var terms = buzzwords.slice(0, 24);
 
     var tab = document.createElement('table');
     tab.setAttribute('id', 'newtable');
@@ -149,6 +140,8 @@ function makeTable() {
 <a href="http://www.usfirst.org/roboticsprograms/frc">FRC</a>
 <a href="http://www.usfirst.org/roboticsprograms/frc/kickoff">Kickoff</a>
 Bingo Card</h1>
+
+<p><b><a href="http://www.thebluealliance.com/">Blue Alliance Kickoff 2013 Live!</a></b></p>
 
 <div id="left">
 <div id="mytable"></div>

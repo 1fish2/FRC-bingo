@@ -6,24 +6,27 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <style type="text/css">
-#left {
+.left {
     float:left;
 }
-#right {
+.right {
     float:right;
+}
+.clear {
+    clear:both;
 }
 .red {
     text-align:center;
     color:red;
 }
-#newtable {
+.bingo {
     border:4px solid blue;
     border-collapse:collapse;
     font-family:verdana,arial,helvetica,sans-serif;
     font-size:18px;
     margin:auto;
 }
-#newtable td {
+.bingo td {
     width:130px;
     height:80px;
     border:2px solid red;
@@ -37,15 +40,20 @@
     height:1em;
     font-size:2em;
 }
-.middle {
+.freecell {
     font-weight:bold;
     text-shadow:1px 1px 3px white, -1px -1px 3px white;
-    background-image:url('http://usfirst.org/images/logo.gif');
+    background-image:url('http://www.usfirst.org/sites/all/themes/first_core/logo.png');
+    background-repeat:no-repeat;
+}
+
+@media print {
+    hr {page-break-before:always;}
 }
 </style>
 
 <script type="text/javascript">
-window.onload = function() { makeTable(); }
+window.onload = function() { appendBingoCard(); }
 
 var buzzwords = [
 "big/hard problem(s)",
@@ -99,7 +107,7 @@ function permuteList(list) {
     }
 }
 
-function makeTable() {
+function generateBingoCard() {
     var row = [];
     var cell = [];
     var num_rows = 5;
@@ -109,7 +117,7 @@ function makeTable() {
     var terms = buzzwords.slice(0, 24);
 
     var tab = document.createElement('table');
-    tab.setAttribute('id', 'newtable');
+    tab.setAttribute('class', 'bingo');
     var tbo = document.createElement('tbody');
 
     var headerRow = document.createElement('tr');
@@ -132,7 +140,7 @@ function makeTable() {
             var term = '';
             if (c == midway && k == midway) {
                 term = 'robot'; // nearly a free cell
-                cell[k].setAttribute('class', 'middle');
+                cell[k].setAttribute('class', 'freecell');
             } else {
                 term = terms[index++];
             }
@@ -143,32 +151,46 @@ function makeTable() {
         tbo.appendChild(row[c]);
     }
     tab.appendChild(tbo);
-    document.getElementById('mytable').appendChild(tab);
+    return tab;
 }
+
+function appendBingoCard() {
+    document.getElementById('first_card').appendChild(generateBingoCard());
+}
+
+function appendAnotherBingoCard() {
+    var hr = document.createElement('hr');
+    document.getElementById('more_cards').appendChild(hr);
+    document.getElementById('more_cards').appendChild(generateBingoCard());
+}
+
 </script>
 
 <body>
 
 <h1 class="red">2013
 <a href="http://www.usfirst.org/roboticsprograms/frc">FRC</a>
-<a href="http://www.usfirst.org/roboticsprograms/frc/kickoff">Kickoff</a>
+<a href="http://www.thebluealliance.com">Kickoff</a>
 Bingo Card</h1>
 
-<p><b>Watch the <a href="http://www.thebluealliance.com/">Kickoff 2013 Live via the Blue Alliance</a></b></p>
+<form>
+    <b>Watch the <a href="http://www.thebluealliance.com/">FIRST Kickoff Live via the Blue Alliance</a>.</b>
+    <button type="button" onclick="appendAnotherBingoCard()">Make another bingo card</button>
+    <a href="http://pastehtml.com/info/1cojydn.html">Comments?</a>
+</form>
 
-<div id="left">
-<div id="mytable"></div>
-
-<p class="red">Just reload the page to get another random bingo card.</p>
-
-<p class="red"><a href="http://pastehtml.com/info/1cojydn.html">Comments?</a></p>
+<div class="left">
+<div id="first_card"></div>
 </div>
 
-<div id="right">
+<div class="right">
 <a class="twitter-timeline" data-dnt=true href="https://twitter.com/search?q=%23omgrobots+OR+%23FRCkickoff" data-widget-id="247912427243585537">Tweets about "#omgrobots OR #FRCkickoff"</a>
 <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 <p class="red">Tweet #FRCkickoff BINGO! when you get 5 in a line.</p>
 </div>
+
+<div class="clear"></div>
+<div id="more_cards"></div>
 
 </body>
 </html>

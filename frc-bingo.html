@@ -53,7 +53,7 @@
 </style>
 
 <script type="text/javascript">
-window.onload = function() { appendBingoCard(); }
+window.onload = function() { insertFirstBingoCard(); }
 
 var buzzwords = [
 "big/hard problem(s)",
@@ -154,8 +154,11 @@ function generateBingoCard() {
     return tab;
 }
 
-function appendBingoCard() {
-    document.getElementById('first_card').appendChild(generateBingoCard());
+function insertFirstBingoCard() {
+    var firstcard = generateBingoCard();
+    var site = document.getElementById('first_card');
+    site.innerHTML = '';
+    site.appendChild(firstcard);
 }
 
 function appendAnotherBingoCard() {
@@ -175,13 +178,12 @@ Bingo Card</h1>
 
 <form>
     <b>Watch the <a href="http://www.thebluealliance.com/">FIRST Kickoff Live via the Blue Alliance</a>.</b>
-    <button type="button" onclick="appendAnotherBingoCard()">Make another bingo card</button>
+    <button type="button" onClick="insertFirstBingoCard()">Roll again</button>
+    <button type="button" onClick="appendAnotherBingoCard()">Add a bingo card</button>
     <a href="http://pastehtml.com/info/1cojydn.html">Comments?</a>
 </form>
 
-<div class="left">
-<div id="first_card"></div>
-</div>
+<div class="left" id="first_card"></div>
 
 <div class="right">
 <a class="twitter-timeline" data-dnt=true href="https://twitter.com/search?q=%23omgrobots+OR+%23FRCkickoff" data-widget-id="247912427243585537">Tweets about "#omgrobots OR #FRCkickoff"</a>

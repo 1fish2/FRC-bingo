@@ -110,12 +110,13 @@ function permuteList(list) {
     }
 }
 
-function onTapCell() {
+function toggleCellBackground() {
     if (this.style.backgroundColor) {
         this.style.backgroundColor = '';
+        this.style.backgroundPosition = '0px 0px';
     } else {
         this.style.backgroundColor = '#999999';
-        this.style.backgroundImage = 'none';
+        this.style.backgroundPosition = '1000px 1000px';
     }
 }
 
@@ -158,7 +159,7 @@ function generateBingoCard() {
             }
             var node = document.createTextNode(term);
             cell[k].appendChild(node);
-            cell[k].onclick = onTapCell;
+            cell[k].onclick = toggleCellBackground;
             row[c].appendChild(cell[k]);
         }
         tbo.appendChild(row[c]);
